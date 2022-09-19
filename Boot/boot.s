@@ -12,6 +12,13 @@ end:
 
 kernel_entry:
     mov sp, #0x80000
+
+    ldr x0, =bss_start
+    ldr x1, =bss_end
+    sub x2, x1, x0
+    mov x1, #0
+    bl memset
+
     bl KMain
     b end
     
