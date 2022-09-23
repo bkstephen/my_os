@@ -11,6 +11,27 @@ end:
     b end
 
 kernel_entry:
+    # check and control the exception level
+    mrs x0, currentel
+    lsr x0, x0, #2
+    cmp x0, #2
+    bne end
+    # set el1 regiter to 0
+    msr sctlr_el1, xzr 
+    # set hypervisor to 1, basically fabricate a EL1 exception to switch levels
+    mov x0, #(1<<31)
+    msr hcr_el2, x0
+    # set the D(ebug),A(system),I(interrupt),F(ast interupt) bits and set EL bits to 1
+    mov x0, 0b1111000101
+    msr spsr_el2, x0
+
+    adr x0, el1_entry
+    msr elr_el2, x0
+
+    eret
+
+el1_entry:
+    # set stack pointer
     mov sp, #0x80000
 
     ldr x0, =bss_start

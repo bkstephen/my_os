@@ -5,14 +5,17 @@
 .global memcpy
 .global memmove
 .global memcmp
+.global get_el
 
 delay:
     subs x0, x0, #1
     bne delay
     ret
 
+# x and w can refer to the same register but in 64-bit and 32-bit modes
+# this says put what is on register 1 to the memory location referred in register [0]
 out_word:
-    str w1, [x0]
+    str w1, [x0] 
     ret
 
 in_word:
@@ -79,5 +82,10 @@ copy:
     bne copy
 
 memcpy_end:
+    ret
+
+get_el:
+    mrs x0, currentel
+    lsr x0, x0, #2
     ret
     
