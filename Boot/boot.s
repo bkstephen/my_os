@@ -40,6 +40,10 @@ el1_entry:
     mov x1, #0
     bl memset
 
+    # register for vector tables of exceptions
+    ldr x0, =vector_table
+    msr vbar_el1, x0
+
     bl KMain
     b end
     

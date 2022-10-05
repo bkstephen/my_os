@@ -2,6 +2,7 @@
 #include "print.h"
 #include "debug.h"
 #include "lib.h"
+#include "handler.h"
 
 void KMain(void)
 {    
@@ -17,13 +18,18 @@ void KMain(void)
     printk(" |_____/ \\__\\___|_| \\__,_|_| |_|\\___/|___/ \\____/|_____/ \r\n");
     printk("                                       ______            \r\n");
     printk("                                      |______|           \r\n");
-
-    // printk("Hello world! \r\n");
-    // printk("Test number %d\r\n", value);
-    // printk("Test number %x\r\n", value);
+    
     printk("We are at EL %u\r\n", get_el());
 
-    ASSERT(0);
+    // char *p = (char*)0xffff000000000000;
+    // *p = 1;
+    //printk("This should be printed \r\n");
+
+    //init_timer();
+    init_interrupt_controller();
+    enable_irq();
+
+    //ASSERT(0);
 
     while (1) {
         ;
