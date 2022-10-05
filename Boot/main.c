@@ -25,9 +25,9 @@ void KMain(void)
     // *p = 1;
     //printk("This should be printed \r\n");
 
-    //init_timer();
+    init_timer();
     init_interrupt_controller();
-    enable_irq();
+    //enable_irq();
 
     //ASSERT(0);
 

@@ -45,5 +45,12 @@ el1_entry:
     msr vbar_el1, x0
 
     bl KMain
+
+    mov x0, #0
+    msr spsr_el1, x0
+    adr x0, el0_entry
+    msr elr_el1, x0
+    eret
+
+el0_entry:
     b end
-    
