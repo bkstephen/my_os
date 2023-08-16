@@ -37,7 +37,7 @@ main:
     ; set up the stack starting where the bootloader ends
     ;mov ss, ax
     ;mov sp, 7C00h
-
+    
     mov si, msg
     call print
     
