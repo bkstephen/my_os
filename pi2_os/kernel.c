@@ -156,7 +156,7 @@ void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
 {
 	// initialize UART for Raspi2
 	uart_init(2);
-	uart_puts("Hello, kernel World!\r\n");
+	uart_puts("Hello Stefanos, this is kernel speaking\r\n");
  
 	while (1)
 		uart_putc(uart_getc());
